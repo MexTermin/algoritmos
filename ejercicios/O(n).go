@@ -47,3 +47,7 @@ func ShapeArea(n int) int {
 	result = (result * 2) + fila(n) // 1
 	return result // 1
 }
+
+// func almostIncreasingSequence(sequence []int) bool {
+
+// }

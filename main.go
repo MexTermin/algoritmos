@@ -1,11 +1,10 @@
 package main
 
 import (
-    "algoritmos/ejercicios"
-    "fmt"
+	"algoritmos/ejercicios"
+	"fmt"
 )
 
-
-func main(){
-    fmt.Println(ejercicios.MakeArrayConsecutive2([]int{0 , 3}))
+func main() {
+	fmt.Println(ejercicios.Binary_search_recursiva([]int{0, 5, 1, 6, 2, 3}, 2, 0, 5))
 }
