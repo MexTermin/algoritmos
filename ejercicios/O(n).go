@@ -1,5 +1,10 @@
 package ejercicios
 
+import (
+    "sort"
+)
+
+
 func Palindrome(cadena string) bool {
 	var inverted string = "" // 1
 	for i := len(cadena); i > 0; i-- { // n
@@ -48,6 +53,12 @@ func ShapeArea(n int) int {
 	return result // 1
 }
 
-// func almostIncreasingSequence(sequence []int) bool {
-
-// }
+func MakeArrayConsecutive2(statues []int)int {
+    sort.Ints(statues) // O(n)
+    var result int // 1
+    for i:= range statues{ // O(n)
+        if i+1  >= len(statues){ break } // 1
+        result += (statues[i+1] - statues[i])-1 // 1
+    }
+    return result
+}
