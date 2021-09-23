@@ -28,8 +28,8 @@ func Binary_search_recursiva(arreglo []int, busqueda int, primerElemento int, Ul
 		return mid // 1
 	}
 	if busqueda < elementMid {
-		return Binary_search_recursiva(arreglo, busqueda, primerElemento, mid-1) // T(n) / 2
+		return Binary_search_recursiva(arreglo, busqueda, primerElemento, mid-1) // 1T(n) / 2
 	} else {
-		return Binary_search_recursiva(arreglo, busqueda, mid+1, UltimoElemento) // T(n) / 2
+		return Binary_search_recursiva(arreglo, busqueda, mid+1, UltimoElemento) // 1T(n) / 2
 	}
 }
