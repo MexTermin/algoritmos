@@ -15,4 +15,5 @@ func main() {
 	fmt.Println("Ordenamiento Por seleccion: ", or.OrdenamientoSeleccion([]int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}))
 	fmt.Println("Ordenamiento Por Inserccion: ", or.OrdenamientoInsercion([]int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}))
 	fmt.Println("Ordenamiento Rapido: ", or.Quicksort([]int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}, 0, 9))
+	fmt.Println("Ordenamiento por Mezcla: ", or.OrdenamientoMerge([]int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}, 0, 8))
 }
