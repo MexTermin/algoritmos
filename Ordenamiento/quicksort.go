@@ -1,5 +1,6 @@
-package ejercicios
+package ordenamiento
 
+// O(n²)
 func Quicksort(array []int, first int, last int) []int {
 	i := first
 	j := last
@@ -21,11 +22,15 @@ func Quicksort(array []int, first int, last int) []int {
 	}
 
 	if first < j {
-		array = Quicksort(array, first, j) // 1t(n / 2)
+		array = Quicksort(array, first, j) // 1t(log n)
 	}
 	if last > i {
-		array = Quicksort(array, i, last) // 1t(n / 2)
+		array = Quicksort(array, i, last) // 1t(log n)
 	}
 
 	return array
 }
+
+/*
+	1t(log n) * O(n²) =  O(n²)
+*/

@@ -1,5 +1,6 @@
 package ordenamiento
 
+// O(n²)
 func OrdenamientoSeleccion(array []int) []int {
 
 	for index := 0; index < len(array)-1; index++ { // n
