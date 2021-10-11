@@ -11,11 +11,14 @@ import (
 
 func main() {
 	fmt.Println("Start")
+
 	slice := []int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}
 	leng := len(slice) - 1
+
 	// fmt.Println("Busqueda binaria Recursiva: ", ex.Binary_search_recursiva(slice, 2, 0, 5))
 	// fmt.Println("Busqueda Secuencial: ", bq.BusquedaElemento(slice, 2))
 	// fmt.Println("Busqueda binaria: ", bq.BusquedaBinaria(slice, 3))
+
 	// fmt.Println("Ordenamiento Burbuja: ", or.OrdenamientoBurbuja(slice))
 	// fmt.Println("Ordenamiento Por seleccion: ", or.OrdenamientoSeleccion(slice))
 	// fmt.Println("Ordenamiento Por Inserccion: ", or.OrdenamientoInsercion(slice))
@@ -32,14 +35,18 @@ func main() {
 
 	//--Linked List
 	Linked := &etd.Linked{} // make a new intance
+
 	// añado elementos
-	Linked.Adiccion(5)
-	Linked.Adiccion(3)
-	Linked.Adiccion(2)
+	Linked.Push(5)
+	Linked.Push(3)
+	Linked.Push(2)
+
 	// muestro los nodos enlazados
 	Linked.Display()
+
 	// imprimo lalongitud de la lista
 	fmt.Println(Linked.Len())
+
 	// busco el nodo con el valor 3
 	node := Linked.FindNode(3)
 	Linked.InsertAfter(node, 9)

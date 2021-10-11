@@ -2,15 +2,15 @@ package EstructurasDeDatos
 
 import "fmt"
 
-type node struct {
-	prev  *node
-	next  *node
+type Node struct {
+	prev  *Node
+	next  *Node
 	value interface{}
 }
 
 type Linked struct {
-	head *node
-	tail *node
+	head *Node
+	tail *Node
 	len  int
 }
 
@@ -28,13 +28,14 @@ func (T *Linked) Display() {
 	fmt.Println("")
 }
 
+// O(1)
 func (T *Linked) Len() int {
-	return T.len
+	return T.len // 1
 }
 
 // O(n)
-func (T *Linked) Adiccion(value interface{}) {
-	element := &node{ // 1
+func (T *Linked) Push(value interface{}) {
+	element := &Node{ // 1
 		next:  T.head, // 1
 		value: value,  // 1
 	}
@@ -52,7 +53,7 @@ func (T *Linked) Adiccion(value interface{}) {
 }
 
 // O(n)
-func (T *Linked) FindNode(value int) *node {
+func (T *Linked) FindNode(value int) *Node {
 	head := T.head    //1
 	for head != nil { // n
 		if head.value == value { // n
@@ -64,8 +65,8 @@ func (T *Linked) FindNode(value int) *node {
 }
 
 // O(1)
-func (T *Linked) InsertAfter(N *node, value int) {
-	element := &node{ // 1
+func (T *Linked) InsertAfter(N *Node, value int) {
+	element := &Node{ // 1
 		value: value,  // 1
 		next:  N.next, // 1
 		prev:  N,      // 1
@@ -75,8 +76,8 @@ func (T *Linked) InsertAfter(N *node, value int) {
 }
 
 // O(1)
-func (T *Linked) InsertBefore(N *node, value int) {
-	element := &node{ // 1
+func (T *Linked) InsertBefore(N *Node, value int) {
+	element := &Node{ // 1
 		value: value,  // 1
 		next:  N,      // 1
 		prev:  N.prev, // 1
