@@ -63,3 +63,28 @@ func (T *Linked) FindNode(value int) *node {
 	return nil // 1
 }
 
+// O(1)
+func (T *Linked) InsertAfter(N *node, value int) {
+	element := &node{ // 1
+		value: value,  // 1
+		next:  N.next, // 1
+		prev:  N,      // 1
+	}
+	N.next = element // 1
+	T.len++
+}
+
+// O(1)
+func (T *Linked) InsertBefore(N *node, value int) {
+	element := &node{ // 1
+		value: value,  // 1
+		next:  N,      // 1
+		prev:  N.prev, // 1
+	}
+	if N.prev == nil {
+		T.head = element // 1
+	} else {
+		N.prev.next = element // 1
+	}
+	T.len++
+}

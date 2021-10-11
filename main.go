@@ -31,12 +31,22 @@ func main() {
 	fmt.Println("Obtener Longitud: ", len(slice)) // O(1)
 
 	//--Linked List
-	Linked := &etd.Linked{}
+	Linked := &etd.Linked{} // make a new intance
+	// añado elementos
 	Linked.Adiccion(5)
 	Linked.Adiccion(3)
 	Linked.Adiccion(2)
+	// muestro los nodos enlazados
 	Linked.Display()
-	fmt.Println(Linked.FindNode(3))
+	// imprimo lalongitud de la lista
 	fmt.Println(Linked.Len())
+	// busco el nodo con el valor 3
+	node := Linked.FindNode(3)
+	Linked.InsertAfter(node, 9)
+
+	node = Linked.FindNode(9)
+	Linked.InsertBefore(node, 1)
+
+	Linked.Display()
 
 }
