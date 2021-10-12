@@ -71,6 +71,9 @@ func (T *Linked) InsertAfter(N *Node, value int) {
 		next:  N.next, // 1
 		prev:  N,      // 1
 	}
+	if element.next == nil {
+		T.tail = element
+	}
 	N.next = element // 1
 	T.len++
 }
@@ -88,4 +91,40 @@ func (T *Linked) InsertBefore(N *Node, value int) {
 		N.prev.next = element // 1
 	}
 	T.len++
+}
+
+// O(1)
+func (T *Linked) RemoveNode(N *Node) {
+	N.next.prev = N.prev // 1
+	if N.prev == nil {   // 1
+		T.head = N.next // 1
+	} else {
+		N.prev.next = N.next // 1
+	}
+	T.len-- // 1
+	N = nil
+}
+
+// O(1)
+func (T *Linked) InsertStart(value int) {
+	element := &Node{ // 1
+		value: value,  // 1
+		next:  T.head, // 1
+		prev:  nil,    // 1
+	}
+	T.head.prev = element // 1
+	T.head = element      // 1
+	T.len++               // 1
+}
+
+// O(1)
+func (T *Linked) InsertEnd(value int) {
+	element := &Node{ // 1
+		value: value,  // 1
+		next:  nil,    // 1
+		prev:  T.tail, // 1
+	}
+	T.tail.next = element // 1
+	T.tail = element      // 1
+	T.len++               // 1
 }

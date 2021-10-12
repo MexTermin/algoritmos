@@ -27,24 +27,25 @@ func main() {
 	// fmt.Println("Ordenamiento por pila: ", or.HeapSort(slice))
 
 	//--------------------------Estructuras de datos------------------------------
-	//--Listas
+	//------Listas
 	fmt.Println("Insertion: ", etd.Insertion(slice, 9, 15))
 	fmt.Println("Remove an element by index: ", etd.RemoveByIndexWithoutOrden(slice, leng))
 	fmt.Println("Remove an element by index: ", etd.RemoveByIndex(slice, leng))
 	fmt.Println("Obtener Longitud: ", len(slice)) // O(1)
 
-	//--Linked List
+	//------Linked List
 	Linked := &etd.Linked{} // make a new intance
 
 	// añado elementos
 	Linked.Push(5)
 	Linked.Push(3)
 	Linked.Push(2)
+	Linked.Push(10)
 
 	// muestro los nodos enlazados
 	Linked.Display()
 
-	// imprimo lalongitud de la lista
+	// imprimo la longitud de la lista
 	fmt.Println(Linked.Len())
 
 	// busco el nodo con el valor 3
@@ -54,6 +55,15 @@ func main() {
 	node = Linked.FindNode(9)
 	Linked.InsertBefore(node, 1)
 
+	// Eliminamosel nodo con valor 10
+	node = Linked.FindNode(10)
+	Linked.RemoveNode(node)
+
+	// Insertar nodo en el inicio
+	Linked.InsertStart(19)
+
+	// Insertar nodo al final
+	Linked.InsertEnd(21)
 	Linked.Display()
 
 }
