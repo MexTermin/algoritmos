@@ -12,8 +12,8 @@ import (
 func main() {
 	fmt.Println("Start")
 
-	slice := []int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}
-	leng := len(slice) - 1
+	// slice := []int{1, 8, 4, 3, 26, 45, 78, 10, 23, 98}
+	// leng := len(slice) - 1
 
 	// fmt.Println("Busqueda binaria Recursiva: ", ex.Binary_search_recursiva(slice, 2, 0, 5))
 	// fmt.Println("Busqueda Secuencial: ", bq.BusquedaElemento(slice, 2))
@@ -28,10 +28,12 @@ func main() {
 
 	//--------------------------Estructuras de datos------------------------------
 	//------Listas
-	fmt.Println("Insertion: ", etd.Insertion(slice, 9, 15))
-	fmt.Println("Remove an element by index: ", etd.RemoveByIndexWithoutOrden(slice, leng))
-	fmt.Println("Remove an element by index: ", etd.RemoveByIndex(slice, leng))
-	fmt.Println("Obtener Longitud: ", len(slice)) // O(1)
+	lista := etd.NewLista()
+	lista.Add(5)
+	lista.Insert(0, "yael")
+	lista.Delete(1)
+	fmt.Println("la longitud de la lista es: ", lista.Lenght())
+	fmt.Println("La lista es: ", lista)
 
 	//------Linked List
 	Linked := &etd.Linked{} // make a new intance
@@ -65,13 +67,5 @@ func main() {
 	// Insertar nodo al final
 	Linked.InsertEnd(21)
 	Linked.Display()
-
-	lista := etd.NewLista()
-	lista.Add(5)
-	lista.Add(9)
-	lista.Add("6")
-	lista.Add("hello")
-	lista.Delete(9)
-	fmt.Println(lista)
 
 }

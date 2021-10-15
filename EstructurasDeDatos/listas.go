@@ -1,40 +1,82 @@
 package EstructurasDeDatos
 
-// O(1)
-func Addicion(lista []int, value int) []int {
-	result := append(lista, value) // append a number in the end os slice. O(1)
-	return result
+type Lista struct {
+	len      int
+	children []interface{}
 }
 
+// Se agrega un elemento al final de la lista
 // O(n)
-func Insertion(lista []int, index int, value int) []int {
-	lista = append(lista[:index+1], lista[index:]...) // O(n)
-	lista[index] = value                              // 1
-	return lista                                      // 1
+func (L *Lista) Add(value interface{}) {
+	newSlice := make([]interface{}, len(L.children)+1) // 1
+	for i, v := range L.children { // n
+		newSlice[i] = v // n
+	}
+	newSlice[len(newSlice)-1] = value // 1
+	L.len++ // 1
+	L.children = newSlice // 1
 }
 
-//Elimina del slice el elemento del indice colocado, cambiando el elemento dado por el que esta al final
-// del arreglo, los lo que siempre lo eliminaraen 2 pasos, pero el orden del arreglo se puede ver afectado
-// Time Complexity: O(1)
-func RemoveByIndexWithoutOrden(lista []int, index int) []int {
-	lista[len(lista)-1], lista[index] = lista[index], lista[len(lista)-1] // O(1)
-	return lista[:len(lista)-1]                                           // O(1)
-}
-
-// Elimina el elemento del arreglo preservando el orden que se tenia desde el comienzo
-// Time Complexity: O(n)
-func RemoveByIndex(lista []int, index int) []int {
-	return append(lista[:index], lista[index+1:]...) // O(n)
-}
-
+// Se elimina el elemento que se encuentra en el index pasado por parametro
 // O(n)
-func GetIndex(list []int, element int) int {
-	for i, v := range list { // O(n)
-		if v == element { // O(n)
-			return i // O(n)
+func (L *Lista) Delete(index int) {
+	newSlice := make([]interface{}, len(L.children)-1) // 1
+	var deleted int = 0 // 1
+	for i, v := range L.children { // n
+		if i != index { // n
+			newSlice[i-deleted] = v // n
+			continue
+		}
+		deleted = 1 // n
+	}
+	L.len-- // 1
+	L.children = newSlice // 1
+}
+
+// Se inserta un valor en el index dado por parametro
+// O(n)
+func (L *Lista) Insert(index int, value interface{}) {
+	newSlice := make([]interface{}, len(L.children)+1) // 1
+	var incrementIndex = 0
+	for i, v := range L.children { // n
+		if i == index { // n
+			newSlice[i] = value // n
+			newSlice[i+1] = v // n
+			incrementIndex = 1 // n
+			continue // n
+		}
+		newSlice[i+incrementIndex] = v // n
+	}
+	L.len++ // 1
+	L.children = newSlice // 1
+}
+
+// Retorna el valor que se encuentra en la posicion dada
+// O(n)
+func (L *Lista) Get(index int) interface{} {
+	for i, v := range L.children { // n
+		if i == index { // n
+			return v // n
 		}
 	}
 	return -1 // 1
 }
 
+// O(1)
+func (L *Lista) Lenght() int {
+	return L.len // 1
+}
 
+//-------------Implementacion de la estructura de la lista, y enlace de esta con la interfaz
+func implementInterface(L IList) IList {
+	return L
+}
+
+func NewLista() IList {
+	var ListaStruc *Lista = &Lista{
+		len:      0,
+		children: make([]interface{}, 0),
+	}
+	return implementInterface(ListaStruc)
+}
+//-------------------------------------------------------------------------------------------
