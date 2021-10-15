@@ -66,8 +66,12 @@ func main() {
 	Linked.InsertEnd(21)
 	Linked.Display()
 
-	algo := &etd.Lista{}
-	lista := etd.CreateLista(algo)
-	fmt.Println(lista.Get(5))
+	lista := etd.NewLista()
+	lista.Add(5)
+	lista.Add(9)
+	lista.Add("6")
+	lista.Add("hello")
+	lista.Delete(9)
+	fmt.Println(lista)
 
 }
