@@ -9,3 +9,7 @@ type IList interface {
 	Get(index int) interface{}
 	Lenght() int
 }
+
+func implementInterface(L IList) IList {
+	return L
+}

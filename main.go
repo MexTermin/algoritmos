@@ -31,41 +31,24 @@ func main() {
 	lista := etd.NewLista()
 	lista.Add(5)
 	lista.Insert(0, "yael")
-	lista.Delete(1)
+	lista.Delete(0)
 	fmt.Println("la longitud de la lista es: ", lista.Lenght())
 	fmt.Println("La lista es: ", lista)
 
-	//------Linked List
-	Linked := &etd.Linked{} // make a new intance
+	// Linked List
+	Linked := etd.NewLinkedList()
 
-	// añado elementos
-	Linked.Push(5)
-	Linked.Push(3)
-	Linked.Push(2)
-	Linked.Push(10)
+	Linked.Add(5)
+	Linked.Add(9)
+	Linked.Add(7)
 
-	// muestro los nodos enlazados
-	Linked.Display()
+	Linked.Insert(1, 6)
 
-	// imprimo la longitud de la lista
-	fmt.Println(Linked.Len())
+	Linked.Delete(2)
 
-	// busco el nodo con el valor 3
-	node := Linked.FindNode(3)
-	Linked.InsertAfter(node, 9)
+	fmt.Println(Linked.Get(0))
+	fmt.Println(Linked.Lenght())
 
-	node = Linked.FindNode(9)
-	Linked.InsertBefore(node, 1)
-
-	// Eliminamosel nodo con valor 10
-	node = Linked.FindNode(10)
-	Linked.RemoveNode(node)
-
-	// Insertar nodo en el inicio
-	Linked.InsertStart(19)
-
-	// Insertar nodo al final
-	Linked.InsertEnd(21)
 	Linked.Display()
 
 }

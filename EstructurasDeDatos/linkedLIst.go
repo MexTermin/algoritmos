@@ -29,102 +29,99 @@ func (T *Linked) Display() {
 }
 
 // O(1)
-func (T *Linked) Len() int {
+func (T *Linked) Lenght() int {
 	return T.len // 1
 }
 
 // O(n)
-func (T *Linked) Push(value interface{}) {
-	element := &Node{ // 1
-		next:  T.head, // 1
-		value: value,  // 1
+func (T *Linked) Get(index int) interface{} {
+	if index > T.len {
+		panic("Indice fuera de rango")
 	}
-	if T.head != nil { // 1
-		T.head.prev = element // 1
+	var node *Node = T.head           //1
+	for i := index - 1; i >= 0; i-- { // n
+		node = node.next
 	}
-	T.head = element // 1
-
-	tails := T.head         // 1
-	for tails.next != nil { // n
-		tails = tails.next // n
-	}
-	T.len++        // 1
-	T.tail = tails // 1
+	return node // 1
 }
 
 // O(n)
-func (T *Linked) FindNode(value int) *Node {
-	head := T.head    //1
-	for head != nil { // n
-		if head.value == value { // n
-			return head // n
+func (T *Linked) Delete(index int) {
+	if index > T.len {
+		panic("Indice fuera de rango")
+	}
+	var node *Node = T.head           //1
+	for i := index - 1; i >= 0; i-- { // n
+		node = node.next
+	}
+	if node.prev == nil { // 1
+		T.head = node.next // 1
+	} else {
+		node.prev.next = node.next // 1
+		if node.next != nil {
+			node.next.prev = node.prev
 		}
-		head = head.next // n
 	}
-	return nil // 1
+	node = nil
+	T.len-- // 1
 }
 
-// O(1)
-func (T *Linked) InsertAfter(N *Node, value int) {
-	element := &Node{ // 1
-		value: value,  // 1
-		next:  N.next, // 1
-		prev:  N,      // 1
+// O(n)
+func (T *Linked) Insert(index int, value interface{}) {
+	if index > T.len {
+		panic("Indice fuera de rango")
 	}
-	if element.next == nil {
-		T.tail = element
+	var node *Node = T.head           //1
+	for i := index - 1; i >= 0; i-- { // n
+		node = node.next
 	}
-	N.next = element // 1
-	T.len++
-}
 
-// O(1)
-func (T *Linked) InsertBefore(N *Node, value int) {
 	element := &Node{ // 1
-		value: value,  // 1
-		next:  N,      // 1
-		prev:  N.prev, // 1
+		value: value,     // 1
+		next:  node,      // 1
+		prev:  node.prev, // 1
 	}
-	if N.prev == nil {
+
+	if node.prev == nil {
 		T.head = element // 1
 	} else {
-		N.prev.next = element // 1
+		node.prev.next = element // 1
+		if node.next != nil {
+			node.next.prev = element
+		}
 	}
 	T.len++
 }
 
 // O(1)
-func (T *Linked) RemoveNode(N *Node) {
-	N.next.prev = N.prev // 1
-	if N.prev == nil {   // 1
-		T.head = N.next // 1
-	} else {
-		N.prev.next = N.next // 1
-	}
-	T.len-- // 1
-	N = nil
-}
-
-// O(1)
-func (T *Linked) InsertStart(value int) {
-	element := &Node{ // 1
-		value: value,  // 1
-		next:  T.head, // 1
-		prev:  nil,    // 1
-	}
-	T.head.prev = element // 1
-	T.head = element      // 1
-	T.len++               // 1
-}
-
-// O(1)
-func (T *Linked) InsertEnd(value int) {
+func (T *Linked) Add(value interface{}) {
 	element := &Node{ // 1
 		value: value,  // 1
 		next:  nil,    // 1
 		prev:  T.tail, // 1
 	}
-	T.tail.next = element // 1
-	T.tail = element      // 1
-	T.len++               // 1
+	if T.head == nil {
+		T.head = element
+	}
+	if T.tail != nil {
+		T.tail.next = element // 1
+		T.tail = element      // 1
+	} else {
+		T.tail = element
+	}
+	T.len++ // 1
 }
+
+//-------------Implementacion de la estructura de la lista, y enlace de esta con la interfaz
+
+func NewLinkedList() *Linked {
+	var ListaStruc *Linked = &Linked{
+		head: nil,
+		tail: nil,
+		len:  0,
+	}
+	implementInterface(ListaStruc)
+	return ListaStruc
+}
+
+//-------------------------------------------------------------------------------------------
