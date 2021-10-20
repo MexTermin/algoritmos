@@ -35,7 +35,7 @@ func (T *Linked) Lenght() int {
 
 // O(n)
 func (T *Linked) Get(index int) interface{} {
-	if index > T.len {
+	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
 	var node *Node = T.head           //1
@@ -47,7 +47,7 @@ func (T *Linked) Get(index int) interface{} {
 
 // O(n)
 func (T *Linked) Delete(index int) {
-	if index > T.len {
+	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
 	var node *Node = T.head           //1
@@ -68,7 +68,7 @@ func (T *Linked) Delete(index int) {
 
 // O(n)
 func (T *Linked) Insert(index int, value interface{}) {
-	if index > T.len {
+	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
 	var node *Node = T.head           //1
