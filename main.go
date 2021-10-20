@@ -30,10 +30,11 @@ func main() {
 	//------Listas
 	lista := etd.NewLista()
 	lista.Add(5)
+	lista.Add(3)
 	lista.Insert(0, "yael")
-	lista.Delete(0)
+	lista.Delete(2)
 	fmt.Println("la longitud de la lista es: ", lista.Lenght())
-	fmt.Println("La lista es: ", lista)
+	fmt.Println("La lista es: ", lista.Value())
 
 	// Linked List
 	Linked := etd.NewLinkedList()
