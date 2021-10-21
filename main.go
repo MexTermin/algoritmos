@@ -29,10 +29,18 @@ func main() {
 	//--------------------------Estructuras de datos------------------------------
 	//------Listas
 	lista := etd.NewLista()
-	lista.Add(5)
+	lista.Add(1)
+	lista.Add(2)
 	lista.Add(3)
+	lista.Add(4)
+	lista.Add(5)
+	lista.Add(6)
+	lista.Add(7)
+	lista.Add(8)
+	lista.Add(9)
+	lista.Add(10)
 	lista.Insert(0, "yael")
-	lista.Delete(2)
+	// lista.Delete(0)
 	fmt.Println("la longitud de la lista es: ", lista.Lenght())
 	fmt.Println("La lista es: ", lista.Value())
 

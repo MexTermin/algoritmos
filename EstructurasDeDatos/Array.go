@@ -1,5 +1,7 @@
 package EstructurasDeDatos
 
+import "fmt"
+
 type Lista struct {
 	len      int
 	children []interface{}
@@ -13,8 +15,7 @@ func (L *Lista) Add(value interface{}) {
 		for i, v := range L.children {           // n
 			newSlice[i] = v // 1
 		}
-		newSlice[len(newSlice)-1] = value // 1
-		L.children = newSlice             // 1
+		L.children = newSlice // 1
 	}
 	L.children[L.len] = value // 1
 	L.len++                   // 1
@@ -26,16 +27,14 @@ func (L *Lista) Delete(index int) {
 	if index >= L.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
-	newSlice := make([]interface{}, len(L.children)) // 1
-	var deleted int = 0                              // 1
-	for i := L.len; i > 0; i-- {                     // n
+	var deleted int = 0            // 1
+	for i := 0; i < L.len-1; i++ { // n
 		if i == index {
 			deleted = 1 // 1
 		}
-		newSlice[i-1] = L.children[i-deleted] //1
+		L.children[i] = L.children[i+deleted] //1
 	}
-	L.len--               // 1
-	L.children = newSlice // 1
+	L.len-- // 1
 }
 
 // Se inserta un valor en el index dado por parametro
@@ -44,21 +43,37 @@ func (L *Lista) Insert(index int, value interface{}) {
 	if index >= L.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
-	var newSlice []interface{} = L.children // 1
 
+	// Si el arreglo esta lleno crea uno nuevo y pasa los elementos del arreglo anterior
 	if len(L.children) == L.len {
-		newSlice = make([]interface{}, len(L.children)*2) // 1
-	}
-	for i := L.len - 1; i >= index; i-- { // n
-		if i == index { // 1
-			newSlice[i+1] = newSlice[i] // 1
-			newSlice[i] = value         // 1
-			break                       // 1
+		newSlice := make([]interface{}, len(L.children)*2) // 1
+		incrementarIndex := 0
+		for i := 0; i < L.len; i++ { // n
+			if i == index { // 1
+				newSlice[i] = value // 1
+				incrementarIndex = 1
+			}
+			newSlice[i+incrementarIndex] = L.children[i] //1
 		}
-		newSlice[i+1] = L.children[i] //1
+		L.children = newSlice // 1
+
+		// Si el arreglo no esta lleno vuelve los elementos a partir del index dado
+	} else {
+		indexFound := false
+		for i := 0; i < L.len; i++ { // n
+			if i == index { // 1
+				L.children[i+1] = L.children[i]
+				L.children[i] = value // 1
+				indexFound = true
+				continue
+			}
+			if indexFound {
+				fmt.Println(i)
+				L.children[i+1] = L.children[i] //1
+			}
+		}
 	}
-	L.len++               // 1
-	L.children = newSlice // 1
+	L.len++ // 1
 }
 
 // Retorna el valor que se encuentra en la posicion dada
