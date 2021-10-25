@@ -14,20 +14,6 @@ type Linked struct {
 	len  int
 }
 
-func (T *Linked) Display() {
-	element := T.head
-
-	for element != nil {
-		if element.next != nil {
-			fmt.Print(element.value, " -> ")
-		} else {
-			fmt.Print(element.value)
-		}
-		element = element.next
-	}
-	fmt.Println("")
-}
-
 // O(1)
 func (T *Linked) Lenght() int {
 	return T.len // 1
@@ -38,11 +24,17 @@ func (T *Linked) Get(index int) interface{} {
 	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
-	var node *Node = T.head           //1
-	for i := index - 1; i >= 0; i-- { // n
-		node = node.next
+	if index == 0 { // 1
+		return T.head // 1
+	} else if index == T.len-1 { // 1
+		return T.tail // 1
+	} else {
+		var node *Node = T.head      //1
+		for i := 0; i < index; i++ { // n
+			node = node.next // 1
+		}
+		return node // 1
 	}
-	return node // 1
 }
 
 // O(n)
@@ -50,19 +42,20 @@ func (T *Linked) Delete(index int) {
 	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
-	var node *Node = T.head           //1
-	for i := index - 1; i >= 0; i-- { // n
-		node = node.next
-	}
-	if node.prev == nil { // 1
-		T.head = node.next // 1
+	if index == 0 { // 1
+		T.head = T.head.next // 1
+		T.head.prev = nil    // 1
+	} else if index == T.len-1 { // 1
+		T.tail = T.tail.prev // 1
+		T.tail.next = nil    // 1
 	} else {
-		node.prev.next = node.next // 1
-		if node.next != nil {
-			node.next.prev = node.prev
+		var node *Node = T.head      //1
+		for i := 0; i < index; i++ { // n
+			node = node.next // 1
 		}
+		node.prev.next = node.next // 1
+		node.next.prev = node.prev // 1
 	}
-	node = nil
 	T.len-- // 1
 }
 
@@ -71,26 +64,36 @@ func (T *Linked) Insert(index int, value interface{}) {
 	if index >= T.len || index < 0 {
 		panic("Indice fuera de rango")
 	}
-	var node *Node = T.head           //1
-	for i := index - 1; i >= 0; i-- { // n
-		node = node.next
-	}
 
 	element := &Node{ // 1
-		value: value,     // 1
-		next:  node,      // 1
-		prev:  node.prev, // 1
+		value: value, // 1
+		next:  nil,   // 1
+		prev:  nil,   // 1
 	}
 
-	if node.prev == nil {
-		T.head = element // 1
+	if index == 0 {
+		element.next = T.head // 1
+		T.head.prev = element // 1
+		T.head = element      // 1
+	} else if index == T.len-1 {
+		element.prev = T.tail // 1
+		T.tail.next = element // 1
+		T.tail = element      // 1
 	} else {
+		var node *Node = T.head      //1
+		for i := 0; i < index; i++ { // n
+			node = node.next // 1
+		}
+
+		element.next = node      // 1
+		element.prev = node.prev // 1
+
 		node.prev.next = element // 1
 		if node.next != nil {
-			node.next.prev = element
+			node.next.prev = element // 1
 		}
 	}
-	T.len++
+	T.len++ // 1
 }
 
 // O(1)
@@ -101,15 +104,43 @@ func (T *Linked) Add(value interface{}) {
 		prev:  T.tail, // 1
 	}
 	if T.head == nil {
-		T.head = element
+		T.head = element // 1
 	}
 	if T.tail != nil {
 		T.tail.next = element // 1
 		T.tail = element      // 1
 	} else {
-		T.tail = element
+		T.tail = element // 1
 	}
 	T.len++ // 1
+}
+
+func (T *Linked) DisplayHead() {
+	element := T.head
+
+	for element != nil { // n
+		if element.next != nil {
+			fmt.Print(element.value, " -> ")
+		} else {
+			fmt.Print(element.value)
+		}
+		element = element.next
+	}
+	fmt.Println("")
+}
+
+func (T *Linked) DisplayTails() {
+	element := T.tail
+
+	for element != nil { // n
+		if element.prev != nil {
+			fmt.Print(element.value, " <- ")
+		} else {
+			fmt.Print(element.value)
+		}
+		element = element.prev
+	}
+	fmt.Println("")
 }
 
 //-------------Implementacion de la estructura de la lista, y enlace de esta con la interfaz

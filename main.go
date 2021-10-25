@@ -30,19 +30,11 @@ func main() {
 	//------Listas
 	lista := etd.NewLista()
 	lista.Add(1)
-	lista.Add(2)
-	lista.Add(3)
-	lista.Add(4)
-	lista.Add(5)
-	lista.Add(6)
-	lista.Add(7)
-	lista.Add(8)
-	lista.Add(9)
-	lista.Add(10)
 	lista.Insert(0, "yael")
-	// lista.Delete(0)
+	lista.Delete(1)
 	fmt.Println("la longitud de la lista es: ", lista.Lenght())
 	fmt.Println("La lista es: ", lista.Value())
+	fmt.Println("LinkedList-----------------")
 
 	// Linked List
 	Linked := etd.NewLinkedList()
@@ -50,14 +42,13 @@ func main() {
 	Linked.Add(5)
 	Linked.Add(9)
 	Linked.Add(7)
-
-	Linked.Insert(1, 6)
-
+	Linked.Insert(2, 6)
 	Linked.Delete(2)
 
-	fmt.Println(Linked.Get(0))
+	fmt.Println(Linked.Get(1))
 	fmt.Println(Linked.Lenght())
 
-	Linked.Display()
+	Linked.DisplayHead()
+	Linked.DisplayTails()
 
 }
