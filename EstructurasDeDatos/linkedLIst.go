@@ -25,15 +25,15 @@ func (T *Linked) Get(index int) interface{} {
 		panic("Indice fuera de rango")
 	}
 	if index == 0 { // 1
-		return T.head // 1
+		return T.head.value // 1
 	} else if index == T.len-1 { // 1
-		return T.tail // 1
+		return T.tail.value // 1
 	} else {
 		var node *Node = T.head      //1
 		for i := 0; i < index; i++ { // n
 			node = node.next // 1
 		}
-		return node // 1
+		return node.value // 1
 	}
 }
 
@@ -70,7 +70,6 @@ func (T *Linked) Insert(index int, value interface{}) {
 		next:  nil,   // 1
 		prev:  nil,   // 1
 	}
-
 	if index == 0 {
 		element.next = T.head // 1
 		T.head.prev = element // 1
@@ -84,14 +83,10 @@ func (T *Linked) Insert(index int, value interface{}) {
 		for i := 0; i < index; i++ { // n
 			node = node.next // 1
 		}
-
 		element.next = node      // 1
 		element.prev = node.prev // 1
-
 		node.prev.next = element // 1
-		if node.next != nil {
-			node.next.prev = element // 1
-		}
+		node.prev = element      // 1
 	}
 	T.len++ // 1
 }
@@ -99,18 +94,17 @@ func (T *Linked) Insert(index int, value interface{}) {
 // O(1)
 func (T *Linked) Add(value interface{}) {
 	element := &Node{ // 1
-		value: value,  // 1
-		next:  nil,    // 1
-		prev:  T.tail, // 1
+		value: value, // 1
+		next:  nil,   // 1
+		prev:  nil,   // 1
 	}
-	if T.head == nil {
+	if T.head == nil && T.tail == nil {
 		T.head = element // 1
-	}
-	if T.tail != nil {
+		T.tail = element // 1
+	} else {
+		element.prev = T.tail // 1
 		T.tail.next = element // 1
 		T.tail = element      // 1
-	} else {
-		T.tail = element // 1
 	}
 	T.len++ // 1
 }

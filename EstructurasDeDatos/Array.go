@@ -33,7 +33,7 @@ func (L *Lista) Delete(index int) {
 	for i := index; i < L.len-1; i++ { // n
 		L.children[i] = L.children[i+1] //1
 	}
-	if L.len*2 < len(L.children) && L.len > 10 { // 1
+	if len(L.children)/2 > L.len && L.len > 10 { // 1
 		L.children = resizeArray(L.children, L.len*2) // n
 	}
 	L.len-- // 1
@@ -48,13 +48,10 @@ func (L *Lista) Insert(index int, value interface{}) {
 	if len(L.children) == L.len {
 		L.children = resizeArray(L.children, L.len*2) // n
 	}
-	for i := L.len; i >= index; i-- { // n
-		if i == index { // 1
-			L.children[i] = value // 1
-			break
-		}
+	for i := L.len; i > index; i-- { // n
 		L.children[i] = L.children[i-1] //1
 	}
+	L.children[index] = value
 	L.len++ // 1
 }
 
