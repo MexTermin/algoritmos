@@ -10,6 +10,7 @@ type IList interface {
 	Lenght() int
 }
 
-func implementInterface(L IList) IList {
-	return L
+// O(1)
+func implementInterface(L IList) IList { // 1
+	return L // 1
 }
