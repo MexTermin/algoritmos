@@ -6,7 +6,7 @@ import (
 	// bq "algoritmos/Busquedas"
 	// ex "algoritmos/Ejercicios"
 	// or "algoritmos/Ordenamiento"
-	etd "algoritmos/EstructurasDeDatos"
+	etd "algoritmos/EstructurasDeDatos/Listas"
 )
 
 func main() {
