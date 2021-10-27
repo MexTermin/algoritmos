@@ -1,14 +1,14 @@
 package EstructurasDeDatos
 
 type IQueue interface {
-	isEmpty() bool
-	enQueue(interface{})
-	deQueue() interface{}
-	head() interface{}
-	tail() interface{}
+	IsEmpty() bool
+	EnQueue(interface{})
+	DeQueue() interface{}
+	Head() interface{}
+	Tail() interface{}
 }
 
 // O(1)
-func ImplementIQueue(L IQueue) IQueue { // 1
+func implementIQueue(L IQueue) IQueue { // 1
 	return L // 1
 }
