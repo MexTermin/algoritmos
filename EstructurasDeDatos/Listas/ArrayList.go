@@ -1,24 +1,17 @@
 package EstructurasDeDatos
 
+import utils "algoritmos/EstructurasDeDatos/Utils"
+
 type Lista struct {
 	len      int
 	children []interface{}
-}
-
-// O(n)
-func resizeArray(oldArray []interface{}, size int) []interface{} {
-	newArray := make([]interface{}, size) // 1
-	for i, v := range oldArray {          // n
-		newArray[i] = v // 1
-	}
-	return newArray // 1
 }
 
 // Se agrega un elemento al final de la lista
 // O(n)
 func (L *Lista) Add(value interface{}) {
 	if len(L.children) == L.len { // 1
-		L.children = resizeArray(L.children, L.len*2) // n
+		L.children = utils.ResizeArray(L.children, L.len*2) // n
 	}
 	L.children[L.len] = value // 1
 	L.len++                   // 1
@@ -34,7 +27,7 @@ func (L *Lista) Delete(index int) {
 		L.children[i] = L.children[i+1] // 1
 	}
 	if len(L.children)/2 > L.len && L.len > 10 { // 1
-		L.children = resizeArray(L.children, L.len*2) // n
+		L.children = utils.ResizeArray(L.children, L.len*2) // n
 	}
 	L.len-- // 1
 }
@@ -46,7 +39,7 @@ func (L *Lista) Insert(index int, value interface{}) {
 		panic("Indice fuera de rango") // 1
 	}
 	if len(L.children) == L.len { // 1
-		L.children = resizeArray(L.children, L.len*2) // n
+		L.children = utils.ResizeArray(L.children, L.len*2) // n
 	}
 	for i := L.len; i > index; i-- { // n
 		L.children[i] = L.children[i-1] // 1
