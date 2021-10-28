@@ -14,6 +14,8 @@ func main() {
 	queue := colas.NewArrayQueue()
 	queue.EnQueue(5)
 	queue.EnQueue(6)
+	queue.EnQueue(7)
+	queue.EnQueue(8)
 	fmt.Println("El primer elemento es:", queue.Head())
 	fmt.Println("La cola es :", queue.Tail())
 
