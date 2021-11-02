@@ -9,6 +9,6 @@ type IQueue interface {
 }
 
 // O(1)
-func implementIQueue(L IQueue) IQueue { // 1
-	return L // 1
+func implementIQueue(Queue IQueue) IQueue { // 1
+	return Queue // 1
 }

@@ -11,6 +11,6 @@ type IList interface {
 }
 
 // O(1)
-func implementInterface(L IList) IList { // 1
-	return L // 1
+func implementInterface(Lista IList) IList { // 1
+	return Lista // 1
 }
