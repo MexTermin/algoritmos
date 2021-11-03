@@ -26,11 +26,9 @@ func (Queue *ArrayQueue) DeQueue() interface{} {
 	if Queue.IsEmpty() { // 1
 		panic("La cola esta vacia") // 1
 	}
-	result := Queue.children[0]        // 1
-	index := 0                         // 1
-	for index < Queue.lastPosition-1 { // n
+	result := Queue.children[0]                             // 1
+	for index := 0; index < Queue.lastPosition-1; index++ { // n
 		Queue.children[index] = Queue.children[index+1] // 1
-		index++                                         // 1
 	}
 	if len(Queue.children)/2 > Queue.lastPosition && Queue.lastPosition > 10 { // 1
 		Queue.children = utils.ResizeArray(Queue.children, Queue.lastPosition*2) // n
