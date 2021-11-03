@@ -64,12 +64,12 @@ func (Queue *LinkedQueue) Tail() interface{} {
 //-------------Implementacion de la estructura de colas, y enlace de esta con la interfaz Queue
 // O(1)
 func NewLinkedQueue() *LinkedQueue {
-	var ListaStruc *LinkedQueue = &LinkedQueue{ // 1
+	var QueueStruc *LinkedQueue = &LinkedQueue{ // 1
 		head: nil, // 1
 		tail: nil, // 1
 	}
-	implementIQueue(ListaStruc) // 1
-	return ListaStruc           // 1
+	implementIQueue(QueueStruc) // 1
+	return QueueStruc           // 1
 }
 
 //-------------------------------------------------------------------------------------------
