@@ -1,16 +1,13 @@
 package EstructurasDeDatos
 
-import "fmt"
-
-type Node struct {
-	prev  *Node
-	next  *Node
-	value interface{}
-}
+import (
+	utils "algoritmos/EstructurasDeDatos/Utils"
+	"fmt"
+)
 
 type Linked struct {
-	head *Node
-	tail *Node
+	head *utils.NodeDouble
+	tail *utils.NodeDouble
 	len  int
 }
 
@@ -25,15 +22,15 @@ func (T *Linked) Get(index int) interface{} {
 		panic("Indice fuera de rango") // 1
 	}
 	if index == 0 { // 1
-		return T.head.value // 1
+		return T.head.Value // 1
 	} else if index == T.len-1 { // 1
-		return T.tail.value // 1
+		return T.tail.Value // 1
 	} else { // 1
-		var node *Node = T.head      //1
+		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.next // 1
+			node = node.Next // 1
 		}
-		return node.value // 1
+		return node.Value // 1
 	}
 }
 
@@ -43,18 +40,18 @@ func (T *Linked) Delete(index int) {
 		panic("Indice fuera de rango") // 1
 	}
 	if index == 0 { // 1
-		T.head = T.head.next // 1
-		T.head.prev = nil    // 1
+		T.head = T.head.Next // 1
+		T.head.Prev = nil    // 1
 	} else if index == T.len-1 { // 1
-		T.tail = T.tail.prev // 1
-		T.tail.next = nil    // 1
+		T.tail = T.tail.Prev // 1
+		T.tail.Next = nil    // 1
 	} else { // 1
-		var node *Node = T.head      //1
+		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.next // 1
+			node = node.Next // 1
 		}
-		node.prev.next = node.next // 1
-		node.next.prev = node.prev // 1
+		node.Prev.Next = node.Next // 1
+		node.Next.Prev = node.Prev // 1
 	}
 	T.len-- // 1
 }
@@ -65,45 +62,45 @@ func (T *Linked) Insert(index int, value interface{}) {
 		panic("Indice fuera de rango") // 1
 	}
 
-	element := &Node{ // 1
-		value: value, // 1
-		next:  nil,   // 1
-		prev:  nil,   // 1
+	element := &utils.NodeDouble{ // 1
+		Value: value, // 1
+		Next:  nil,   // 1
+		Prev:  nil,   // 1
 	}
 	if index == 0 { // 1
-		element.next = T.head // 1
-		T.head.prev = element // 1
+		element.Next = T.head // 1
+		T.head.Prev = element // 1
 		T.head = element      // 1
 	} else if index == T.len-1 { // 1
-		element.prev = T.tail // 1
-		T.tail.next = element // 1
+		element.Prev = T.tail // 1
+		T.tail.Next = element // 1
 		T.tail = element      // 1
 	} else { // 1
-		var node *Node = T.head      //1
+		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.next // 1
+			node = node.Next // 1
 		}
-		element.next = node      // 1
-		element.prev = node.prev // 1
-		node.prev.next = element // 1
-		node.prev = element      // 1
+		element.Next = node      // 1
+		element.Prev = node.Prev // 1
+		node.Prev.Next = element // 1
+		node.Prev = element      // 1
 	}
 	T.len++ // 1
 }
 
 // O(1)
 func (T *Linked) Add(value interface{}) {
-	element := &Node{ // 1
-		value: value, // 1
-		next:  nil,   // 1
-		prev:  nil,   // 1
+	element := &utils.NodeDouble{ // 1
+		Value: value, // 1
+		Next:  nil,   // 1
+		Prev:  nil,   // 1
 	}
 	if T.head == nil && T.tail == nil { // 1
 		T.head = element // 1
 		T.tail = element // 1
 	} else { // 1
-		element.prev = T.tail // 1
-		T.tail.next = element // 1
+		element.Prev = T.tail // 1
+		T.tail.Next = element // 1
 		T.tail = element      // 1
 	}
 	T.len++ // 1
@@ -113,12 +110,12 @@ func (T *Linked) Add(value interface{}) {
 func (T *Linked) DisplayHead() {
 	element := T.head    // 1
 	for element != nil { // n
-		if element.next != nil { // 1
-			fmt.Print(element.value, " -> ") // 1
+		if element.Next != nil { // 1
+			fmt.Print(element.Value, " -> ") // 1
 		} else { // 1
-			fmt.Print(element.value) // 1
+			fmt.Print(element.Value) // 1
 		}
-		element = element.next // 1
+		element = element.Next // 1
 	}
 	fmt.Println("") // 1
 }
@@ -127,12 +124,12 @@ func (T *Linked) DisplayHead() {
 func (T *Linked) DisplayTails() {
 	element := T.tail    // 1
 	for element != nil { // n
-		if element.prev != nil { // 1
-			fmt.Print(element.value, " <- ") // 1
+		if element.Prev != nil { // 1
+			fmt.Print(element.Value, " <- ") // 1
 		} else { // 1
-			fmt.Print(element.value) // 1
+			fmt.Print(element.Value) // 1
 		}
-		element = element.prev // 1
+		element = element.Prev // 1
 	}
 	fmt.Println("") // 1
 }

@@ -4,10 +4,15 @@ import (
 	"fmt"
 	// bq "algoritmos/Busquedas"
 	// ex "algoritmos/Ejercicios"
-	// or "algoritmos/Ordenamiento"
-	// colas "algoritmos/EstructurasDeDatos/Colas"
+	// "algoritmos/Ordenamiento"
+	colas "algoritmos/EstructurasDeDatos/Colas"
 )
 
 func main() {
 	fmt.Println("Start")
+
+	queue := colas.NewLinkedQueue()
+	queue.EnQueue(1)
+	queue.EnQueue(1)
+	queue.EnQueue(1)
 }

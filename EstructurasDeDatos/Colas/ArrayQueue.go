@@ -28,15 +28,16 @@ func (Queue *ArrayQueue) DeQueue() interface{} {
 	}
 	result := Queue.children[0]        // 1
 	index := 0                         // 1
-	for Queue.children[index] != nil { // n
+	for index < Queue.lastPosition-1 { // n
 		Queue.children[index] = Queue.children[index+1] // 1
 		index++                                         // 1
 	}
-	if Queue.children[(len(Queue.children)/2)+1] != nil { // 1
-		Queue.children = utils.ResizeArray(Queue.children, len(Queue.children)*2) // n
+	if len(Queue.children)/2 > Queue.lastPosition && Queue.lastPosition > 10 { // 1
+		Queue.children = utils.ResizeArray(Queue.children, Queue.lastPosition*2) // n
 	}
-	Queue.lastPosition-- // 1
-	return result        // 1
+	Queue.children[Queue.lastPosition-1] = nil // 1
+	Queue.lastPosition--                       // 1
+	return result                              // 1
 }
 
 // O(1)
