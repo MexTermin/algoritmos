@@ -1,6 +1,6 @@
 package utils
 
-// O(n)
+// Time Complexity: O(n)
 func ResizeArray(oldArray []interface{}, size int) []interface{} {
 	newArray := make([]interface{}, size) // 1
 	for i, v := range oldArray {          // n
