@@ -22,15 +22,15 @@ func (T *Linked) Get(index int) interface{} {
 		panic("Indice fuera de rango") // 1
 	}
 	if index == 0 { // 1
-		return T.head.Value // 1
+		return T.head.GetValue() // 1
 	} else if index == T.len-1 { // 1
-		return T.tail.Value // 1
+		return T.tail.GetValue() // 1
 	} else { // 1
 		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.Next // 1
+			node = node.GetNext() // 1
 		}
-		return node.Value // 1
+		return node.GetValue() // 1
 	}
 }
 
@@ -40,18 +40,18 @@ func (T *Linked) Delete(index int) {
 		panic("Indice fuera de rango") // 1
 	}
 	if index == 0 { // 1
-		T.head = T.head.Next // 1
-		T.head.Prev = nil    // 1
+		T.head = T.head.GetNext() // 1
+		T.head.SetPrev(nil)       // 1
 	} else if index == T.len-1 { // 1
-		T.tail = T.tail.Prev // 1
-		T.tail.Next = nil    // 1
+		T.tail = T.tail.GetPrev() // 1
+		T.tail.SetNext(nil)       // 1
 	} else { // 1
 		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.Next // 1
+			node = node.GetNext() // 1
 		}
-		node.Prev.Next = node.Next // 1
-		node.Next.Prev = node.Prev // 1
+		node.GetPrev().SetNext(node.GetNext()) // 1
+		node.GetNext().SetPrev(node.GetPrev()) // 1
 	}
 	T.len-- // 1
 }
@@ -62,46 +62,40 @@ func (T *Linked) Insert(index int, value interface{}) {
 		panic("Indice fuera de rango") // 1
 	}
 
-	element := &utils.NodeDouble{ // 1
-		Value: value, // 1
-		Next:  nil,   // 1
-		Prev:  nil,   // 1
-	}
-	if index == 0 { // 1
-		element.Next = T.head // 1
-		T.head.Prev = element // 1
-		T.head = element      // 1
+	element := &utils.NodeDouble{} //1
+	element.SetValue(value)        // 1
+	if index == 0 {                // 1
+		element.SetNext(T.head) // 1
+		T.head.SetPrev(element) // 1
+		T.head = element        // 1
 	} else if index == T.len-1 { // 1
-		element.Prev = T.tail // 1
-		T.tail.Next = element // 1
-		T.tail = element      // 1
+		element.SetPrev(T.tail) // 1
+		T.tail.SetNext(element) // 1
+		T.tail = element        // 1
 	} else { // 1
 		node := T.head               //1
 		for i := 0; i < index; i++ { // n
-			node = node.Next // 1
+			node = node.GetNext() // 1
 		}
-		element.Next = node      // 1
-		element.Prev = node.Prev // 1
-		node.Prev.Next = element // 1
-		node.Prev = element      // 1
+		element.SetNext(node)           // 1
+		element.SetPrev(node.GetPrev()) // 1
+		node.GetPrev().SetNext(element) // 1
+		node.SetPrev(element)           // 1
 	}
 	T.len++ // 1
 }
 
 // O(1)
 func (T *Linked) Add(value interface{}) {
-	element := &utils.NodeDouble{ // 1
-		Value: value, // 1
-		Next:  nil,   // 1
-		Prev:  nil,   // 1
-	}
+	element := &utils.NodeDouble{}      // 1
+	element.SetValue(value)             // 1
 	if T.head == nil && T.tail == nil { // 1
 		T.head = element // 1
 		T.tail = element // 1
 	} else { // 1
-		element.Prev = T.tail // 1
-		T.tail.Next = element // 1
-		T.tail = element      // 1
+		element.SetPrev(T.tail) // 1
+		T.tail.SetNext(element) // 1
+		T.tail = element        // 1
 	}
 	T.len++ // 1
 }
@@ -110,12 +104,12 @@ func (T *Linked) Add(value interface{}) {
 func (T *Linked) DisplayHead() {
 	element := T.head    // 1
 	for element != nil { // n
-		if element.Next != nil { // 1
-			fmt.Print(element.Value, " -> ") // 1
+		if element.GetNext() != nil { // 1
+			fmt.Print(element.GetValue(), " -> ") // 1
 		} else { // 1
-			fmt.Print(element.Value) // 1
+			fmt.Print(element.GetValue()) // 1
 		}
-		element = element.Next // 1
+		element = element.GetNext() // 1
 	}
 	fmt.Println("") // 1
 }
@@ -124,12 +118,12 @@ func (T *Linked) DisplayHead() {
 func (T *Linked) DisplayTails() {
 	element := T.tail    // 1
 	for element != nil { // n
-		if element.Prev != nil { // 1
-			fmt.Print(element.Value, " <- ") // 1
+		if element.GetPrev() != nil { // 1
+			fmt.Print(element.GetValue(), " <- ") // 1
 		} else { // 1
-			fmt.Print(element.Value) // 1
+			fmt.Print(element.GetValue()) // 1
 		}
-		element = element.Prev // 1
+		element = element.GetPrev() // 1
 	}
 	fmt.Println("") // 1
 }
