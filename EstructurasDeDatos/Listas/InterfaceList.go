@@ -1,7 +1,5 @@
 package EstructurasDeDatos
 
-// import "fmt"
-
 type IList interface {
 	Add(value interface{})
 	Delete(index int)

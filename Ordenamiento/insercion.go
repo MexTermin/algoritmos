@@ -1,7 +1,7 @@
 package ordenamiento
 
 // O(n²)
-func OrdenamientoInsercion(array []int) []int {
+func InsertionSort(array []int) []int {
 	for index := 0; index <= len(array)-1; index++ { // n
 		elemento := array[index]            // 1
 		j := index - 1                      // 1

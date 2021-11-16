@@ -1,9 +1,8 @@
-package ejercicios
+package Ejercicios
 
 import (
     "sort"
 )
-
 
 func Palindrome(cadena string) bool {
 	var inverted string = "" // 1

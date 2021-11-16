@@ -10,7 +10,7 @@ package busquedas
 */
 
 // O(log n)
-func BusquedaBinaria(array []int, elemento int) int {
+func BinarySearch(array []int, elemento int) int {
 	min := 0
 	max := len(array) - 1
 	for min <= max { // n/2
