@@ -19,7 +19,7 @@ func (T *Linked) Lenght() int {
 // O(n)
 func (T *Linked) Get(index int) interface{} {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if index == 0 { // 1
 		return T.head.GetValue() // 1
@@ -37,7 +37,7 @@ func (T *Linked) Get(index int) interface{} {
 // O(n)
 func (T *Linked) Delete(index int) {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if index == 0 { // 1
 		T.head = T.head.GetNext() // 1
@@ -59,7 +59,7 @@ func (T *Linked) Delete(index int) {
 // O(n)
 func (T *Linked) Insert(index int, value interface{}) {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 
 	element := &utils.DoubleNode{} //1

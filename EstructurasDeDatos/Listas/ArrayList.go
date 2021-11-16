@@ -21,7 +21,7 @@ func (Lista *Lista) Add(value interface{}) {
 // O(n)
 func (Lista *Lista) Delete(index int) {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	for i := index; i < Lista.len - 1; i++ { // n
 		Lista.children[i] = Lista.children[i + 1] // 1
@@ -36,7 +36,7 @@ func (Lista *Lista) Delete(index int) {
 // O(n)
 func (Lista *Lista) Insert(index int, value interface{}) {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if len(Lista.children) == Lista.len { // 1
 		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
@@ -52,7 +52,7 @@ func (Lista *Lista) Insert(index int, value interface{}) {
 // O(1)
 func (Lista *Lista) Get(index int) interface{} {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	return Lista.children[index] // 1
 }
