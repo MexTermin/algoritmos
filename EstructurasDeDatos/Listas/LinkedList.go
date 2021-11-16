@@ -2,7 +2,6 @@ package EstructurasDeDatos
 
 import (
 	utils "algoritmos/EstructurasDeDatos/Utils"
-	"fmt"
 )
 
 type Linked struct {
@@ -98,34 +97,6 @@ func (T *Linked) Add(value interface{}) {
 		T.tail = element        // 1
 	}
 	T.len++ // 1
-}
-
-// O(n)
-func (T *Linked) DisplayHead() {
-	element := T.head    // 1
-	for element != nil { // n
-		if element.GetNext() != nil { // 1
-			fmt.Print(element.GetValue(), " -> ") // 1
-		} else { // 1
-			fmt.Print(element.GetValue()) // 1
-		}
-		element = element.GetNext() // 1
-	}
-	fmt.Println("") // 1
-}
-
-// O(n)
-func (T *Linked) DisplayTails() {
-	element := T.tail    // 1
-	for element != nil { // n
-		if element.GetPrev() != nil { // 1
-			fmt.Print(element.GetValue(), " <- ") // 1
-		} else { // 1
-			fmt.Print(element.GetValue()) // 1
-		}
-		element = element.GetPrev() // 1
-	}
-	fmt.Println("") // 1
 }
 
 //-------------Implementación de la estructura de la lista y enlace de esta con la interfaz

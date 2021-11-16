@@ -5,7 +5,7 @@ import (
 	// bq "algoritmos/Busquedas"
 	// ex "algoritmos/Ejercicios"
 	// "algoritmos/Ordenamiento"
-	// colas "algoritmos/EstructurasDeDatos/Colas"
+	// "algoritmos/EstructurasDeDatos/Listas"
 )
 
 func main() {
