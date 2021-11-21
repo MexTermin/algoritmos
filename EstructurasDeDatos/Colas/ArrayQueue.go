@@ -15,7 +15,7 @@ func (Queue *ArrayQueue) IsEmpty() bool {
 // O(n)
 func (Queue *ArrayQueue) EnQueue(value interface{}) {
 	if Queue.lastPosition == len(Queue.children) { // 1
-		Queue.children = utils.ResizeArray(Queue.children, len(Queue.children) * 2) // n
+		Queue.children = utils.ResizeArray(Queue.children, len(Queue.children) * 2, Queue.lastPosition - 1) // n
 	}
 	Queue.children[Queue.lastPosition] = value // 1
 	Queue.lastPosition++                       // 1
@@ -31,7 +31,7 @@ func (Queue *ArrayQueue) DeQueue() interface{} {
 		Queue.children[index] = Queue.children[index + 1] // 1
 	}
 	if len(Queue.children) / 2 > Queue.lastPosition && Queue.lastPosition > 10 { // 1
-		Queue.children = utils.ResizeArray(Queue.children, Queue.lastPosition * 2) // n
+		Queue.children = utils.ResizeArray(Queue.children, Queue.lastPosition * 2, Queue.lastPosition - 1) // n
 	}
 	Queue.children[Queue.lastPosition - 1] = nil // 1
 	Queue.lastPosition--                       // 1

@@ -11,7 +11,7 @@ type Lista struct {
 // O(n)
 func (Lista *Lista) Add(value interface{}) {
 	if len(Lista.children) == Lista.len { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2, Lista.len - 1) // n
 	}
 	Lista.children[Lista.len] = value // 1
 	Lista.len++                   // 1
@@ -27,7 +27,7 @@ func (Lista *Lista) Delete(index int) {
 		Lista.children[i] = Lista.children[i + 1] // 1
 	}
 	if len(Lista.children) / 2 > Lista.len && Lista.len > 10 { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2, Lista.len - 1) // n
 	}
 	Lista.len-- // 1
 }
@@ -39,7 +39,7 @@ func (Lista *Lista) Insert(index int, value interface{}) {
 		panic("Índice fuera de rango") // 1
 	}
 	if len(Lista.children) == Lista.len { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2, Lista.len - 1) // n
 	}
 	for i := Lista.len; i > index; i-- { // n
 		Lista.children[i] = Lista.children[i - 1] // 1

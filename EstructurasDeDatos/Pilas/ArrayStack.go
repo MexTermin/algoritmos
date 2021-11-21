@@ -1,6 +1,9 @@
 package pilas
 
-import utils "algoritmos/EstructurasDeDatos/utils"
+import (
+	utils "algoritmos/EstructurasDeDatos/utils"
+	"fmt"
+)
 
 type Stack struct {
 	children []interface{} // 1
@@ -15,7 +18,7 @@ func (Stack *Stack) IsEmpty() bool {
 // O(n)
 func (Stack *Stack) Push(value interface{}) {
 	if Stack.size == len(Stack.children) { // 1
-		Stack.children = utils.ResizeArray(Stack.children, len(Stack.children)*2) // n
+		Stack.children = utils.ResizeArray(Stack.children, len(Stack.children)*2, Stack.size - 1) // n
 	}
 
 	Stack.children[Stack.size] = value // 1
@@ -29,11 +32,13 @@ func (Stack *Stack) Pop() interface{}{
 	}
 
 	if  len(Stack.children) / 2 > Stack.size && Stack.size > 10 { // 1
-		Stack.children = utils.ResizeArray(Stack.children, len(Stack.children)*2) // n
+		fmt.Println("la longitud es: ", Stack.size, len(Stack.children))
+		Stack.children = utils.ResizeArray(Stack.children, Stack.size * 2,  Stack.size - 1) // n
 	}
 
 	var result interface{} = Stack.children[Stack.size - 1] // 1
 	Stack.children[Stack.size - 1] = nil // 1
+	Stack.size-- // 1
 	return result // 1
 }
 
