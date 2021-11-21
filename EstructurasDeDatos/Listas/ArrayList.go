@@ -7,42 +7,42 @@ type Lista struct {
 	children []interface{}
 }
 
-// Se agrega un elemento al final de la lista
+// Agrega un elemento al final de la lista
 // O(n)
 func (Lista *Lista) Add(value interface{}) {
 	if len(Lista.children) == Lista.len { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len*2) // n
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
 	}
 	Lista.children[Lista.len] = value // 1
 	Lista.len++                   // 1
 }
 
-// Se elimina el elemento que se encuentra en el index pasado por parametro
+// Elimina el elemento que se encuentra en el index dado por el parametro
 // O(n)
 func (Lista *Lista) Delete(index int) {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
-	for i := index; i < Lista.len-1; i++ { // n
-		Lista.children[i] = Lista.children[i+1] // 1
+	for i := index; i < Lista.len - 1; i++ { // n
+		Lista.children[i] = Lista.children[i + 1] // 1
 	}
-	if len(Lista.children)/2 > Lista.len && Lista.len > 10 { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len*2) // n
+	if len(Lista.children) / 2 > Lista.len && Lista.len > 10 { // 1
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
 	}
 	Lista.len-- // 1
 }
 
-// Se inserta un valor en el index dado por parametro
+// Inserta un valor en el index dado por parametro
 // O(n)
 func (Lista *Lista) Insert(index int, value interface{}) {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if len(Lista.children) == Lista.len { // 1
-		Lista.children = utils.ResizeArray(Lista.children, Lista.len*2) // n
+		Lista.children = utils.ResizeArray(Lista.children, Lista.len * 2) // n
 	}
 	for i := Lista.len; i > index; i-- { // n
-		Lista.children[i] = Lista.children[i-1] // 1
+		Lista.children[i] = Lista.children[i - 1] // 1
 	}
 	Lista.children[index] = value // 1
 	Lista.len++                   // 1
@@ -52,7 +52,7 @@ func (Lista *Lista) Insert(index int, value interface{}) {
 // O(1)
 func (Lista *Lista) Get(index int) interface{} {
 	if index >= Lista.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	return Lista.children[index] // 1
 }
@@ -67,7 +67,7 @@ func (Lista *Lista) Value() []interface{} {
 	return Lista.children[:Lista.len] // 1
 }
 
-//-------------Implementacion de la estructura de la lista, y enlace de esta con la interfaz
+//-------------Implementación de la estructura de la lista y enlace de esta con la interfaz
 // O(1)
 func NewLista() *Lista {
 	var ListaStruc *Lista = &Lista{ // 1

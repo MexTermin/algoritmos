@@ -1,19 +1,19 @@
 package utils
 
-type NodeSimple struct {
+type SimpleNode struct {
 	value interface{}
-	next  *NodeSimple
+	next  *SimpleNode
 }
 
-func (Node *NodeSimple) SetNext(value *NodeSimple) {
+func (Node *SimpleNode) SetNext(value *SimpleNode) {
 	Node.next = value
 }
-func (Node *NodeSimple) GetNext() *NodeSimple {
+func (Node *SimpleNode) GetNext() *SimpleNode {
 	return Node.next
 }
-func (Node *NodeSimple) SetValue(value interface{}) {
+func (Node *SimpleNode) SetValue(value interface{}) {
 	Node.value = value
 }
-func (Node *NodeSimple) GetValue() interface{} {
+func (Node *SimpleNode) GetValue() interface{} {
 	return Node.value
 }

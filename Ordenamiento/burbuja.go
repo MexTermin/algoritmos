@@ -1,7 +1,7 @@
 package ordenamiento
 
 // O(n²)
-func OrdenamientoBurbuja(array []int) []int {
+func BubleSort(array []int) []int {
 
 	for limite := len(array) - 1; limite > 0; limite-- { // n
 		for index := 0; index < limite; index++ { // 1 + 2 + 3... + n =  n (n + 1)

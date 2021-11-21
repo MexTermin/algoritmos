@@ -6,6 +6,7 @@ import (
 	// ex "algoritmos/Ejercicios"
 	// "algoritmos/Ordenamiento"
 	// "algoritmos/EstructurasDeDatos/Colas"
+	// "algoritmos/EstructurasDeDatos/Listas"
 )
 
 func main() {

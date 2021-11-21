@@ -2,12 +2,11 @@ package EstructurasDeDatos
 
 import (
 	utils "algoritmos/EstructurasDeDatos/Utils"
-	"fmt"
 )
 
 type Linked struct {
-	head *utils.NodeDouble
-	tail *utils.NodeDouble
+	head *utils.DoubleNode
+	tail *utils.DoubleNode
 	len  int
 }
 
@@ -19,11 +18,11 @@ func (T *Linked) Lenght() int {
 // O(n)
 func (T *Linked) Get(index int) interface{} {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if index == 0 { // 1
 		return T.head.GetValue() // 1
-	} else if index == T.len-1 { // 1
+	} else if index == T.len - 1 { // 1
 		return T.tail.GetValue() // 1
 	} else { // 1
 		node := T.head               //1
@@ -37,12 +36,12 @@ func (T *Linked) Get(index int) interface{} {
 // O(n)
 func (T *Linked) Delete(index int) {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 	if index == 0 { // 1
 		T.head = T.head.GetNext() // 1
 		T.head.SetPrev(nil)       // 1
-	} else if index == T.len-1 { // 1
+	} else if index == T.len - 1 { // 1
 		T.tail = T.tail.GetPrev() // 1
 		T.tail.SetNext(nil)       // 1
 	} else { // 1
@@ -59,16 +58,16 @@ func (T *Linked) Delete(index int) {
 // O(n)
 func (T *Linked) Insert(index int, value interface{}) {
 	if index >= T.len || index < 0 { // 1
-		panic("Indice fuera de rango") // 1
+		panic("Índice fuera de rango") // 1
 	}
 
-	element := &utils.NodeDouble{} //1
+	element := &utils.DoubleNode{} //1
 	element.SetValue(value)        // 1
 	if index == 0 {                // 1
 		element.SetNext(T.head) // 1
 		T.head.SetPrev(element) // 1
 		T.head = element        // 1
-	} else if index == T.len-1 { // 1
+	} else if index == T.len - 1 { // 1
 		element.SetPrev(T.tail) // 1
 		T.tail.SetNext(element) // 1
 		T.tail = element        // 1
@@ -87,7 +86,7 @@ func (T *Linked) Insert(index int, value interface{}) {
 
 // O(1)
 func (T *Linked) Add(value interface{}) {
-	element := &utils.NodeDouble{}      // 1
+	element := &utils.DoubleNode{}      // 1
 	element.SetValue(value)             // 1
 	if T.head == nil && T.tail == nil { // 1
 		T.head = element // 1
@@ -100,35 +99,7 @@ func (T *Linked) Add(value interface{}) {
 	T.len++ // 1
 }
 
-// O(n)
-func (T *Linked) DisplayHead() {
-	element := T.head    // 1
-	for element != nil { // n
-		if element.GetNext() != nil { // 1
-			fmt.Print(element.GetValue(), " -> ") // 1
-		} else { // 1
-			fmt.Print(element.GetValue()) // 1
-		}
-		element = element.GetNext() // 1
-	}
-	fmt.Println("") // 1
-}
-
-// O(n)
-func (T *Linked) DisplayTails() {
-	element := T.tail    // 1
-	for element != nil { // n
-		if element.GetPrev() != nil { // 1
-			fmt.Print(element.GetValue(), " <- ") // 1
-		} else { // 1
-			fmt.Print(element.GetValue()) // 1
-		}
-		element = element.GetPrev() // 1
-	}
-	fmt.Println("") // 1
-}
-
-//-------------Implementacion de la estructura de la lista, y enlace de esta con la interfaz
+//-------------Implementación de la estructura de la lista y enlace de esta con la interfaz
 // O(1)
 func NewLinkedList() *Linked {
 	var ListaStruc *Linked = &Linked{ // 1

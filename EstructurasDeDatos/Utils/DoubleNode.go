@@ -1,26 +1,26 @@
 package utils
 
-type NodeDouble struct {
+type DoubleNode struct {
 	value interface{}
-	prev  *NodeDouble
-	next  *NodeDouble
+	prev  *DoubleNode
+	next  *DoubleNode
 }
 
-func (Node *NodeDouble) SetPrev(value *NodeDouble) {
+func (Node *DoubleNode) SetPrev(value *DoubleNode) {
 	Node.prev = value
 }
-func (Node *NodeDouble) GetPrev() *NodeDouble {
+func (Node *DoubleNode) GetPrev() *DoubleNode {
 	return Node.prev
 }
-func (Node *NodeDouble) SetNext(value *NodeDouble) {
+func (Node *DoubleNode) SetNext(value *DoubleNode) {
 	Node.next = value
 }
-func (Node *NodeDouble) GetNext() *NodeDouble {
+func (Node *DoubleNode) GetNext() *DoubleNode {
 	return Node.next
 }
-func (Node *NodeDouble) SetValue(value interface{}) {
+func (Node *DoubleNode) SetValue(value interface{}) {
 	Node.value = value
 }
-func (Node *NodeDouble) GetValue() interface{} {
+func (Node *DoubleNode) GetValue() interface{} {
 	return Node.value
 }

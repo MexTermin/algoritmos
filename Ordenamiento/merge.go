@@ -50,12 +50,12 @@ func merge(array []int, left int, mid int, right int) []int {
 }
 
 // O(n log(n))
-func OrdenamientoMerge(array []int, left int, right int) []int {
+func MegeSort(array []int, left int, right int) []int {
 	if left < right {
 		mid := left + (right-left)/2 // 1
 
-		OrdenamientoMerge(array, left, mid)    // T(n/2)
-		OrdenamientoMerge(array, mid+1, right) // T(n/2)
+		MegeSort(array, left, mid)    // T(n/2)
+		MegeSort(array, mid+1, right) // T(n/2)
 
 		merge(array, left, mid, right) // O(n log(n))
 	}

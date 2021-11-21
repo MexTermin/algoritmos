@@ -8,7 +8,7 @@ package busquedas
 
 // retorna el index del elemento que deseas buscar, si no lo encuentra regresa -1
 // O(n)
-func BusquedaElemento(array []int, number int) int {
+func SearchElement(array []int, number int) int {
 
 	for index, value := range array { // n
 		if value == number { // 1
@@ -20,7 +20,7 @@ func BusquedaElemento(array []int, number int) int {
 
 // retorna el elemento mas pequeño del arreglo
 // O(n)
-func BusquedaDelMenor(array []int, number int) int {
+func SmallestSearch(array []int, number int) int {
 	menor := 0
 	for _, value := range array { // n
 		if value <= menor { // 1
@@ -32,7 +32,7 @@ func BusquedaDelMenor(array []int, number int) int {
 
 // retorna el elemento mas grande del arreglo
 // O(n)
-func BusquedaDelMayor(array []int, number int) int {
+func HigherSearch(array []int, number int) int {
 	mayor := 0
 	for _, value := range array { // n
 		if value >= mayor { // 1
