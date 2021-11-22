@@ -1,9 +1,7 @@
 package Pilas
 
-import (
-	utils "algoritmos/EstructurasDeDatos/Utils"
-	"fmt"
-)
+import utils "algoritmos/EstructurasDeDatos/Utils"
+
 
 type Stack struct {
 	children []interface{} // 1
@@ -32,7 +30,6 @@ func (Stack *Stack) Pop() interface{}{
 	}
 
 	if  len(Stack.children) / 2 > Stack.size && Stack.size > 10 { // 1
-		fmt.Println("la longitud es: ", Stack.size, len(Stack.children))
 		Stack.children = utils.ResizeArray(Stack.children, Stack.size * 2,  Stack.size - 1) // n
 	}
 
