@@ -2,18 +2,18 @@ package Colas
 
 import utils "algoritmos/EstructurasDeDatos/Utils"
 
-type ArrayQueue struct {
+type Queue struct {
 	children     []interface{}
 	lastPosition int
 }
 
 // O(1)
-func (Queue *ArrayQueue) IsEmpty() bool {
+func (Queue *Queue) IsEmpty() bool {
 	return Queue.lastPosition == 0 // 1
 }
 
 // O(n)
-func (Queue *ArrayQueue) EnQueue(value interface{}) {
+func (Queue *Queue) EnQueue(value interface{}) {
 	if Queue.lastPosition == len(Queue.children) { // 1
 		Queue.children = utils.ResizeArray(Queue.children, len(Queue.children) * 2, Queue.lastPosition - 1) // n
 	}
@@ -22,7 +22,7 @@ func (Queue *ArrayQueue) EnQueue(value interface{}) {
 }
 
 // O(n)
-func (Queue *ArrayQueue) DeQueue() interface{} {
+func (Queue *Queue) DeQueue() interface{} {
 	if Queue.IsEmpty() { // 1
 		panic("La cola está vacía") // 1
 	}
@@ -39,7 +39,7 @@ func (Queue *ArrayQueue) DeQueue() interface{} {
 }
 
 // O(1)
-func (Queue *ArrayQueue) Head() interface{} {
+func (Queue *Queue) Head() interface{} {
 	if Queue.IsEmpty() { // 1
 		panic("La cola está vacía") // 1
 	}
@@ -47,7 +47,7 @@ func (Queue *ArrayQueue) Head() interface{} {
 }
 
 // O(1)
-func (Queue *ArrayQueue) Tail() interface{} {
+func (Queue *Queue) Tail() interface{} {
 	if Queue.IsEmpty() { // 1
 		panic("La cola está vacía") // 1
 	}
@@ -56,13 +56,13 @@ func (Queue *ArrayQueue) Tail() interface{} {
 
 //-------------Instánciador del Queue y enlace de esta con la interfaz IQueue
 // O(1)
-func NewArrayQueue() *ArrayQueue {
-	var ArrayQueue *ArrayQueue = &ArrayQueue{ // 1
+func NewArrayQueue() *Queue {
+	var Queue *Queue = &Queue{ // 1
 		children:     make([]interface{}, 10), // 1
 		lastPosition: 0,
 	}
-	implementIQueue(ArrayQueue) // 1
-	return ArrayQueue           // 1
+	implementIQueue(Queue) // 1
+	return Queue           // 1
 }
 
 //-------------------------------------------------------------------------------------------
