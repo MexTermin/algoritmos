@@ -1,4 +1,4 @@
-package utils
+package Utils
 
 // Time Complexity: O(n)
 func ResizeArray(oldArray []interface{}, size int, endFill int) []interface{} {

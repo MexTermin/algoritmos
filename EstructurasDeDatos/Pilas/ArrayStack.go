@@ -1,7 +1,7 @@
-package pilas
+package Pilas
 
 import (
-	utils "algoritmos/EstructurasDeDatos/utils"
+	utils "algoritmos/EstructurasDeDatos/Utils"
 	"fmt"
 )
 

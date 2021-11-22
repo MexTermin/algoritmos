@@ -1,4 +1,4 @@
-package EstructurasDeDatos
+package Listas
 
 type IList interface {
 	Add(value interface{})

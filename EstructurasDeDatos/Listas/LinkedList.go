@@ -1,4 +1,4 @@
-package EstructurasDeDatos
+package Listas
 
 import (
 	utils "algoritmos/EstructurasDeDatos/Utils"

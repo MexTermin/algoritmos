@@ -1,4 +1,4 @@
-package EstructurasDeDatos
+package Colas
 
 type IQueue interface {
 	IsEmpty() bool

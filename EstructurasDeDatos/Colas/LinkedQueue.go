@@ -1,4 +1,4 @@
-package EstructurasDeDatos
+package Colas
 
 import utils "algoritmos/EstructurasDeDatos/Utils"
 

@@ -1,4 +1,4 @@
-package pilas
+package Pilas
 
 // O(1)
 type IStack interface {
