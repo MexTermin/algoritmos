@@ -20,21 +20,26 @@ func (Queue *PriorityLinkedQueue) EnQueue(args interface{}) {
 	node.SetValue(value)        // 1
 	node.SetPriority(priority)  // 1
 
-	if Queue.IsEmpty(){
+	if Queue.IsEmpty() {
 		Queue.head = node // 1
 		Queue.tail = node // 1
 	} else {
-		nodeActual := Queue.head          // 1
-		for nodeActual.GetNext() != nil { // 1
-			if nodeActual.GetPriority() > priority { // 1
-				nodeActual = node.GetNext() // 1
-				continue // 1
+		var nodeActual *utils.SimpleNode // 1
+		if Queue.tail.GetPriority() < priority { // 1
+			Queue.tail.SetNext(node) // 1
+			Queue.tail = node // 1
+		} else {
+			nodeActual = Queue.head // 1
+			for nodeActual.GetPriority() > priority { // 1
+				if nodeActual.GetNext() != nil { // 1
+					nodeActual = node.GetNext() // 1
+				} else { // 1
+					break // 1
+				}
 			}
-			break // 1
+			node.SetNext(nodeActual.GetNext()) // 1
+			nodeActual.SetNext(node)           // 1
 		}
-
-		node.SetNext(nodeActual.GetNext()) // 1
-		nodeActual.SetNext(node)           // 1
 	}
 }
 
