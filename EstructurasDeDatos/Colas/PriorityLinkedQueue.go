@@ -1,9 +1,6 @@
 package Colas
 
-import (
-	utils "algoritmos/EstructurasDeDatos/Utils"
-	"fmt"
-)
+import utils "algoritmos/EstructurasDeDatos/Utils"
 
 type PriorityLinkedQueue struct {
 	LinkedQueue
@@ -20,16 +17,16 @@ func (Queue *PriorityLinkedQueue) EnQueue(args interface{}) {
 	node.SetValue(value)        // 1
 	node.SetPriority(priority)  // 1
 
-	if Queue.IsEmpty() {
+	if Queue.IsEmpty() { // 1
 		Queue.head = node // 1
 		Queue.tail = node // 1
-	} else {
-		var nodeActual *utils.SimpleNode // 1
+	} else { // 1
+		var nodeActual *utils.SimpleNode         // 1
 		if Queue.tail.GetPriority() < priority { // 1
 			Queue.tail.SetNext(node) // 1
-			Queue.tail = node // 1
+			Queue.tail = node        // 1
 		} else {
-			nodeActual = Queue.head // 1
+			nodeActual = Queue.head                   // 1
 			for nodeActual.GetPriority() > priority { // 1
 				if nodeActual.GetNext() != nil { // 1
 					nodeActual = node.GetNext() // 1
@@ -43,17 +40,10 @@ func (Queue *PriorityLinkedQueue) EnQueue(args interface{}) {
 	}
 }
 
-func (Queue *PriorityLinkedQueue) Print() {
-	nodo := Queue.head
-	for nodo != nil {
-		fmt.Print(" -> ", nodo.GetValue())
-		nodo = nodo.GetNext()
-	}
-	fmt.Println("")
-}
-
+//-------------Implementación de la estructura de colas con prioridad y enlace de esta con la interfaz Queue
+// O(1)
 func NewPriorityLinkedQueue() *PriorityLinkedQueue {
-	queue := &PriorityLinkedQueue{}
-	implementIQueue(queue)
-	return queue
+	queue := &PriorityLinkedQueue{} // 1
+	implementIQueue(queue) // 1
+	return queue // 1
 }

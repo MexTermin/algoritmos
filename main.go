@@ -17,5 +17,4 @@ func main() {
 	cola.EnQueue([]interface{}{"2", 5})
 	cola.EnQueue([]interface{}{"3", 3})
 	cola.EnQueue([]interface{}{"4", 7})
-	cola.Print()
 }
